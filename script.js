@@ -38,13 +38,6 @@ if (!correct) {
     let imageUrl = "img/h" + errorCounter + ".png";
     //podmien obrazek na stronie (zmien jesgo src)
     document.getElementById("image").src = imageUrl;
-
-    if(errorCounter >=9) {
-        //zmien funkcje wywolywana po probie odgadniecia znaku  
-        document.getElementById("guessedChar").removeEventListener("input", guess);
-        document.getElementById("guessedChar").addEventListener("input", gameOver);
-        //wyswietl komunikat o koncu gry po czasie
-        setTimeout(gameOver, 1000);
     }
 }
 
