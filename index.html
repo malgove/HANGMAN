@@ -4,11 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    Hasło: <span id="maskedPassword"></span><br><br>
-    <input type="text" id="guessedChar" maxlength="1">
+    <div id="password"><span id="maskedPassword"></span><br><br>
+    </div>
+    <div id="main">
+        <div id="keyboard">
+            <!--<input type="text" id="guessedChar" maxlength="1">-->
+        </div>
+        <div id="imageDiv">
+            <img src="img/h0.png" id="image">
+        </div>
+    </div>
+    <div id="menu">
+        <button id="newGameButton">Nowa gra</button>
+    </div>
     <script src="script.js"> </script><br>
-    <img src="img/h0.png" id="image">
+    <audio src="sound/1.mp3" autoplay="false" id="victorySound"></audio>
+    
 </body>
 </html>
