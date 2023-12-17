@@ -8,7 +8,10 @@ setTimeout(() =>{
     document.getElementById("guessedChar").value = "";
 }, 1000)
 
-console.log("Próbwa odgadnięcia znaku: " + guessedChar);
+console.log("Próba odgadnięcia znaku: " + guessedChar);
+
+//dodaj flagę (true or false) okreslajaca czy w tej probie trafilismy jakas litere, domyslnie flaga ma wartosc false (nietrafiony)
+let correct = false;
 
 //odkryj literki jesli trafione
 
@@ -21,8 +24,27 @@ for(let i=0; i<password.length; i++) {
     //jeżeli zgadywana litera jeest taka sama jak i-ta litera w hasle
         if(guessedChar == password[i]) {
         //to odkryj w zamaskowanym hasle te listere
-        maskedPassword[i] = password[i]
+        maskedPassword[i] = password[i];
+        //zgadlismy litere - postaw flage
+        correct = true;
         }
+    }
+}
+//sprawdz czy trafilismy i w razie potrzeby zwiększ licznik nieudanych prób 
+if (!correct) {
+    //inkrementuj(zwieksz) licznik
+    errorCounter++;
+    //wygeneruj nowy url obrazka
+    let imageUrl = "img/h" + errorCounter + ".png";
+    //podmien obrazek na stronie (zmien jesgo src)
+    document.getElementById("image").src = imageUrl;
+
+    if(errorCounter >=9) {
+        //zmien funkcje wywolywana po probie odgadniecia znaku  
+        document.getElementById("guessedChar").removeEventListener("input", guess);
+        document.getElementById("guessedChar").addEventListener("input", gameOver);
+        //wyswietl komunikat o koncu gry po czasie
+        setTimeout(gameOver, 1000);
     }
 }
 
@@ -44,5 +66,11 @@ window.addEventListener("load", ()=> {
     
 })
 
+function gameOver () {
+    //funkcja uruchamia się po osiągnięciu maksymalnej liczby błędnych odpowiedzi
+    alert("Koniec gry :(");
+}
+
 const password = "choinka".split("");
 var maskedPassword = "_______".split("");
+var errorCounter = 0;
